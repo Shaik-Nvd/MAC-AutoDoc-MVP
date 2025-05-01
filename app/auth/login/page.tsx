@@ -38,7 +38,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950 flex flex-col">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-block">
@@ -50,7 +50,7 @@ export default function LoginPage() {
             >
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur-sm opacity-75"></div>
-                <div className="relative bg-white rounded-full p-1">
+                <div className="relative bg-background rounded-full p-1">
                   <FileText className="h-8 w-8 text-blue-600" />
                 </div>
               </div>

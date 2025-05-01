@@ -64,6 +64,10 @@
   @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
 }
 
+.dark .card-hover:hover {
+  @apply shadow-lg shadow-gray-800/20;
+}
+
 .button-hover {
   @apply transition-all duration-200 hover:scale-105 active:scale-95;
 }
@@ -73,16 +77,16 @@
 }
 
 .tool-button.active {
-  @apply bg-blue-100 text-blue-600 shadow-inner;
+  @apply bg-blue-100 text-blue-600 shadow-inner dark:bg-blue-900 dark:text-blue-300;
 }
 
 .tool-button.active::after {
   content: "";
-  @apply absolute bottom-0 left-1/2 w-1/2 h-0.5 bg-blue-600 transform -translate-x-1/2;
+  @apply absolute bottom-0 left-1/2 w-1/2 h-0.5 bg-blue-600 dark:bg-blue-400 transform -translate-x-1/2;
 }
 
 .tool-button:hover:not(.active) {
-  @apply bg-gray-100;
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 .annotation-card {
@@ -90,21 +94,29 @@
 }
 
 .annotation-card:hover {
-  @apply shadow-md border-blue-200 bg-blue-50/30;
+  @apply shadow-md border-blue-200 bg-blue-50/30 dark:border-blue-800 dark:bg-blue-900/20;
 }
 
 .annotation-card.active {
-  @apply border-blue-500 bg-blue-50 shadow-md;
+  @apply border-blue-500 bg-blue-50 shadow-md dark:border-blue-600 dark:bg-blue-900/30;
 }
 
 /* PDF Viewer Styles */
 .pdf-page {
-  @apply bg-white shadow-lg transition-all duration-300;
+  @apply bg-white shadow-lg transition-all duration-300 dark:bg-gray-900;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pdf-page:hover {
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dark .pdf-page {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark .pdf-page:hover {
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* Animations */
@@ -162,11 +174,11 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 rounded-full;
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400;
+  @apply bg-gray-400 dark:bg-gray-500;
 }
 
 /* Color Palette for Annotations */
@@ -201,7 +213,7 @@
 }
 
 .dropzone.active {
-  @apply border-blue-500 bg-blue-50;
+  @apply border-blue-500 bg-blue-50 dark:bg-blue-900/20;
 }
 
 /* Loading Spinner - Fixed with proper spacing */

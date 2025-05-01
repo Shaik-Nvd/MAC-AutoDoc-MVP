@@ -452,7 +452,7 @@ export default function EnhancedPDFLibrary({ onSelectPdf }: EnhancedPDFLibraryPr
       return (
         <div
           ref={dropzoneRef}
-          className={`dropzone ${isDragging ? "active animate-pulse-once" : ""}`}
+          className={`dropzone ${isDragging ? "active animate-pulse-once" : ""} border-border`}
           onDragEnter={handleDragEnter}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -494,7 +494,7 @@ export default function EnhancedPDFLibrary({ onSelectPdf }: EnhancedPDFLibraryPr
           {docs.map((doc) => (
             <div
               key={doc.id}
-              className="flex items-center border rounded-lg p-3 hover:border-blue-200 hover:bg-blue-50/30 transition-all cursor-pointer"
+              className="flex items-center border border-border rounded-lg p-3 hover:border-blue-200 hover:bg-blue-50/30 dark:hover:bg-blue-900/20 transition-all cursor-pointer"
               onClick={() => handleSelectPdf(doc.url, doc.id)}
             >
               <div className="h-12 w-12 flex-shrink-0 mr-4">
@@ -588,9 +588,9 @@ export default function EnhancedPDFLibrary({ onSelectPdf }: EnhancedPDFLibraryPr
         )}
 
         {docs.map((doc) => (
-          <Card key={doc.id} className="overflow-hidden card-hover">
+          <Card key={doc.id} className="overflow-hidden card-hover border-border">
             <div
-              className="aspect-[3/4] cursor-pointer bg-gray-50 flex items-center justify-center relative group"
+              className="aspect-[3/4] cursor-pointer bg-muted/50 flex items-center justify-center relative group"
               onClick={() => handleSelectPdf(doc.url, doc.id)}
             >
               <img

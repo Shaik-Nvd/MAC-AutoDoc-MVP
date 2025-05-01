@@ -243,6 +243,7 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
       context.scale(scale, scale)
 
       // Draw PDF content (simulated)
+      // Use black text on white background regardless of theme
       context.fillStyle = "#000"
       context.font = "24px Arial"
       context.fillText(`Page ${currentPage} of ${totalPages}`, 50, 50)
@@ -793,9 +794,9 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
   }
 
   return (
-    <div className="flex h-[calc(100vh-10rem)] flex-col md:flex-row bg-white rounded-lg shadow-lg">
+    <div className="flex h-[calc(100vh-10rem)] flex-col md:flex-row bg-background rounded-lg shadow-lg">
       {/* Left sidebar - Annotation list */}
-      <div className="w-full border-r md:w-80">
+      <div className="w-full border-r md:w-80 border-border">
         <div className="flex h-full flex-col">
           <div className="border-b p-4">
             <Tabs defaultValue="annotations" onValueChange={(value) => setSidebarTab(value as any)}>
@@ -956,9 +957,9 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
 
       {/* Main content - PDF viewer */}
       <div className="flex flex-1 flex-col">
-        <div className="bg-gray-50 border-b p-2">
+        <div className="bg-muted/50 border-b border-border p-2">
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-1 bg-white rounded-md shadow-sm border">
+            <div className="flex items-center gap-1 bg-background rounded-md shadow-sm border">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -1044,7 +1045,7 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="flex gap-2 h-8 bg-white">
+                <Button variant="outline" className="flex gap-2 h-8 bg-background">
                   <div className="h-4 w-4 rounded-full" style={{ backgroundColor: highlightColor }}></div>
                   <span>Color</span>
                 </Button>
@@ -1063,7 +1064,7 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <div className="flex items-center gap-1 bg-white rounded-md shadow-sm border ml-auto">
+            <div className="flex items-center gap-1 bg-background rounded-md shadow-sm border ml-auto">
               <Button
                 variant="ghost"
                 size="icon"
@@ -1094,7 +1095,7 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
             </div>
 
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="bg-white" onClick={handleSaveAnnotations}>
+              <Button variant="outline" size="sm" onClick={handleSaveAnnotations}>
                 <Save className="h-4 w-4 mr-1" />
                 Save
               </Button>
@@ -1106,7 +1107,7 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
         </div>
 
         <div
-          className="relative flex-1 overflow-auto bg-gray-100 flex justify-center p-4"
+          className="relative flex-1 overflow-auto bg-muted flex justify-center p-4"
           ref={canvasContainerRef}
           style={{ touchAction: "none" }}
         >
@@ -1119,7 +1120,7 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
               <div className="relative" style={{ touchAction: "none" }}>
                 <canvas
                   ref={canvasRef}
-                  className="shadow-lg bg-white"
+                  className="shadow-lg bg-background dark:bg-white"
                   onMouseDown={handleMouseDown}
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
@@ -1131,7 +1132,7 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
 
               {commentPosition && (
                 <div
-                  className="absolute bg-white p-4 rounded-md shadow-lg border"
+                  className="absolute bg-background p-4 rounded-md shadow-lg border"
                   style={{
                     left: commentPosition.x * scale + 20,
                     top: commentPosition.y * scale + 20,
@@ -1188,8 +1189,8 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
           )}
         </div>
 
-        <div className="flex items-center justify-between border-t p-2 bg-gray-50">
-          <Button variant="outline" size="sm" onClick={handlePrevPage} disabled={currentPage <= 1} className="bg-white">
+        <div className="flex items-center justify-between border-t border-border p-2 bg-muted/50">
+          <Button variant="outline" size="sm" onClick={handlePrevPage} disabled={currentPage <= 1}>
             <ChevronLeft className="h-4 w-4 mr-1" />
             Previous
           </Button>
@@ -1205,17 +1206,11 @@ export default function PDFAnnotator({ pdfUrl }: PDFAnnotatorProps) {
                   setCurrentPage(page)
                 }
               }}
-              className="w-12 h-8 text-center border rounded-md"
+              className="w-12 h-8 text-center border rounded-md bg-background text-foreground"
             />
             <span className="text-sm">of {totalPages}</span>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleNextPage}
-            disabled={currentPage >= totalPages}
-            className="bg-white"
-          >
+          <Button variant="outline" size="sm" onClick={handleNextPage} disabled={currentPage >= totalPages}>
             Next
             <ChevronRight className="h-4 w-4 ml-1" />
           </Button>

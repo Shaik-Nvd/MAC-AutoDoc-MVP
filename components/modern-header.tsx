@@ -53,7 +53,7 @@ export default function ModernHeader() {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white"
+        scrolled ? "bg-background/90 backdrop-blur-md shadow-sm" : "bg-background"
       }`}
     >
       {/* Announcement banner */}
@@ -75,7 +75,7 @@ export default function ModernHeader() {
           <Link href="/" className="flex items-center">
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur-sm opacity-75"></div>
-              <div className="relative bg-white rounded-full p-1">
+              <div className="relative bg-background rounded-full p-1">
                 <FileText className="h-6 w-6 text-blue-600" />
               </div>
             </div>
@@ -168,15 +168,14 @@ export default function ModernHeader() {
         </div>
       </div>
 
-      {/* Mobile navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t animate-slide-up">
+        <div className="md:hidden border-t border-border">
           <div className="container mx-auto py-4 px-4 space-y-2">
             {menuItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex items-center py-2 px-3 rounded-md hover:bg-gray-100"
+                className="flex items-center py-2 px-3 rounded-md hover:bg-muted"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.icon}
